@@ -1,11 +1,7 @@
-package com.monagan.owen.splitdist;
+package com.monagan.owen.splitdist.menu;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
-import com.monagan.owen.splitdist.menu.NavigationBar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,15 +10,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.monagan.owen.splitdist.menu.NavigationBar;
+import com.monagan.owen.splitdist.R;
 
-public class mainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+/**
+ * Created by owen on 11/04/16.
+ */
+public class NavigationBar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public NavigationBar(Bundle savedInstanceState){
+        /*
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        /*
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -93,18 +91,4 @@ public class mainMenu extends AppCompatActivity implements NavigationView.OnNavi
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-    public void setupActionButton(){
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Hide Everything", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
 }
-
-

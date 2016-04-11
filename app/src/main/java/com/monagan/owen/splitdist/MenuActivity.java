@@ -129,8 +129,6 @@ public class MenuActivity extends AppCompatActivity {
         cancelMember.setOnClickListener(confirmCancelMemberClickListener);
     }
 
-
-
     private void createTransportSelection() {
         walk = (Button) findViewById(R.id.walkingButton);
         drive = (Button) findViewById(R.id.drivingButton);

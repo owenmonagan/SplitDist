@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
 public class requestFromServer extends AsyncTask<Void, Void, Void> {
     private String requestTag = "requestFromServer";
     private String dstAddress="192.168.0.27";
-    private int dstPort=9734;
+    private int dstPort=9020;
     private String requestString;
     private String responseString;
     public boolean requestComplete=false;

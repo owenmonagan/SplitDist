@@ -9,6 +9,8 @@
     tools:context="com.monagan.owen.splitdist.AddMember"
     tools:showIn="@layout/activity_add_member">
 
+
+
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
@@ -18,10 +20,52 @@
         tools:context="com.monagan.owen.splitdist.MapsActivity"
         tools:layout="@layout/abc_action_bar_title_item" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:textSize="32sp"
+        android:id="@+id/appText"
+        android:text="@string/app_name"
+        android:layout_margin="5dp"/>
     <ViewAnimator
+        android:id="@+id/loadAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10sp"
+        >
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startButton"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_play_dark"
+        android:elevation="10sp"/>
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:elevation="10sp"/>
+    </RelativeLayout>
+    </ViewAnimator>
+
+    <ViewAnimator
+        android:layout_below="@+id/appText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:alpha="0.9"
         android:id="@+id/viewAnimator"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -88,6 +132,30 @@
                 android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/selectDestination"
+                android:layout_below="@+id/selectLocationLayout"
+                android:visibility="visible">
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:hint="Carpool Destination"
+                    android:ems="10"
+                    android:id="@+id/destination"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/destinationButton"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/destinationButton"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
 
 
 
@@ -96,7 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:id="@+id/selectTransportLayout"
-            android:layout_below="@+id/selectLocationLayout">
+            android:layout_below="@+id/selectDestination">
 
             <ImageButton
                 style="?android:attr/buttonStyleSmall"
@@ -153,7 +221,12 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </ViewAnimator>
+
 
 
 
