@@ -1,0 +1,348 @@
+    public void setupTransportSelection(){
+        Log.i(transportTag,"Setting up Transport selection functionality");
+
+        transportclick=new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transportMethod=getResources().getResourceEntryName(v.getId());
+                menuAnimator.showNext();
+                actionButtonAnimator.showNext();
+                if(transportMethod!="stationary") {
+                    computeMeetPoint();
+                }
+                Log.i(transportTag,"Method: "+transportMethod);
+            }
+        };
+        drivingButton= (Button)findViewById(R.id.driving);
+        drivingButton.setOnClickListener(transportclick);
+
+        walkingButton= (Button)findViewById(R.id.walking);
+        walkingButton.setOnClickListener(transportclick);
+
+        bicyclingButton= (Button)findViewById(R.id.bicycling);
+        bicyclingButton.setOnClickListener(transportclick);
+
+        stationaryButton= (Button)findViewById(R.id.stationary);
+        stationaryButton.setOnClickListener(transportclick);
+        Log.i(transportTag, "Transport selection functionality completed");
+    }
+
+    public void setupContactList(){
+        header=(TextView)findViewById(R.id.Header);
+        portEdit=(EditText)findViewById(R.id.Port);
+        //intent.putExtra(EXTRA_ID, intent.getStringArrayExtra(FacebookLoginActivity.EXTRA_ID));
+        //
+        //intent.putExtra(EXTRA_ID2, id);
+
+        Log.i(contactTag, "name: ");
+        String name="Hi , who do you want to meet?";
+        header.setText(name);
+        // Get ListView object from xml
+        contactList = (ListView) findViewById(R.id.contactList);
+
+        // Defined Array values to show in ListView
+        String[] values = new String[] { "Gibbs",
+                "Jam",
+                "Oisin",
+                "Enda",
+                "Hugo",
+                "Rich",
+                "Ollie",
+                "Alex"
+        };
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+
+
+        // Assign adapter to ListView
+        contactList.setAdapter(adapter);
+
+        // ListView Item Click Listener
+        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+                String portString=(portEdit.getText().toString());
+                if (portString.length()>3){
+                    Log.i(mapTag, "Port String: "+portString);
+                    port=Integer.parseInt(portString);
+                }
+                // ListView Clicked item value
+                String  itemValue    = (String) contactList.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
+                        .show();
+                Log.i(contactTag, "contact: " + itemValue);
+
+                menuAnimator.showNext();
+
+
+            }
+
+        });
+    }
+public void setupMenuAnimations(){
+        actionButton= (FloatingActionButton)findViewById(R.id.fab);
+        menuAnimator =(ViewAnimator)findViewById(R.id.menuAnimator);
+        actionButtonAnimator =(ViewAnimator)findViewById(R.id.actionButtonAnimator);
+        slideLeft= AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        slideRight= AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        fadeIn=AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        fadeOut=AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+        menuAnimator.setInAnimation(fadeIn);
+        menuAnimator.setOutAnimation(fadeOut);
+        actionButtonAnimator.setInAnimation(slideLeft);
+        actionButtonAnimator.setOutAnimation(slideRight);
+
+        actionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                menuAnimator.showNext();
+                actionButtonAnimator.showPrevious();
+            }
+        });
+
+    }
+
+
+        <ViewAnimator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:id="@+id/menuAnimator"
+            android:layout_alignBottom="@+id/map"
+            android:layout_marginBottom="100dp"
+            android:layout_centerHorizontal="true"
+            >
+
+            <RelativeLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="@color/colorPrimaryDarkOrange">
+
+                <TextView android:id="@+id/Header"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Who do you wish to meet?"
+                    android:layout_alignParentBottom="false" />
+                <EditText
+                    android:id="@+id/Port"
+                    android:layout_below="@+id/Header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_alignParentBottom="false"/>
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/Port"
+                        android:background="@color/colorPrimaryOrange"
+                        android:focusable="false"
+                        android:descendantFocusability="blocksDescendants"
+                        android:id="@+id/contactList"
+                        />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:backgroundTintMode="src_over"
+                android:background="@color/colorPrimaryOrange"
+                >
+                <TextView android:id="@+id/transportHeader"
+                    android:textSize="18dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="How are you travelling?"
+                    android:background="@color/colorPrimaryDarkOrange"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="false" />
+
+                <Button
+                    android:id="@+id/driving"
+                    android:layout_width="140dp"
+                    android:layout_height="81dp"
+                    android:text="@string/button_driving"
+                    android:layout_below="@+id/transportHeader"
+                    android:onClick="selectedTransport"
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/bicycling"
+                    android:layout_width="140dp"
+                    android:layout_height="81dp"
+                    android:text="@string/button_bicycling"
+                    android:layout_below="@+id/transportHeader"
+                    android:layout_toRightOf="@id/driving"
+                    android:onClick="selectedTransport"
+
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/walking"
+                    android:layout_width="140dp"
+                    android:layout_height="81dp"
+                    android:text="@string/button_walking"
+                    android:layout_below="@id/driving"
+                    android:onClick="selectedTransport"
+
+                    android:layout_margin="5dp" />
+
+                <Button
+                    android:id="@+id/stationary"
+                    android:layout_width="140dp"
+                    android:layout_height="81dp"
+                    android:layout_toRightOf="@id/walking"
+                    android:text="@string/button_stationary"
+                    android:layout_below="@id/bicycling"
+                    android:onClick="selectedTransport"
+
+                    android:layout_margin="5dp" />
+            </RelativeLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </ViewAnimator>
+
+
+
+
+        <ViewAnimator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/actionButtonAnimator"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" >
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/ic_dialog_map"
+
+            />
+
+        </ViewAnimator>
+
+        TextView header;
+
+            FloatingActionButton actionButton;
+            ViewAnimator menuAnimator,actionButtonAnimator;
+            Animation fadeIn,fadeOut,slideLeft,slideRight;
+
+            View.OnClickListener transportclick;
+
+            Button drivingButton,walkingButton,bicyclingButton,stationaryButton;
+
+
+
+
+
+
+
+
+
+
+
+        Log.i(computeTag, "Staring meetpoint computation");
+        mMap.clear();
+        String lat = String.valueOf(mLastLocation.getLatitude());
+        String lng = String.valueOf(mLastLocation.getLongitude());
+        Log.i(computeTag, "My latlng:"+lat+","+lng);
+        //192.168.0.27
+        String myId="123";
+        String friendId="321";
+        client= new  clientTask("192.168.0.27",port,myId,friendId,lat+" , "+lng,transportMethod);
+        client.execute();
+        while (!client.done){
+
+        }
+        Log.i(computeTag, "Leader latlng: " + client.poolLeader.origin);
+
+        //mMap.addMarker(new MarkerOptions().position(client.poolLeader.origin).title("Meet Here"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(client.poolLeader.origin));
+        //LatLng sydney = new LatLng(-34, 151);
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //Log.i(mapTag, "Map Set up");
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.zoomIn());
+        mMap.moveCamera(CameraUpdateFactory.zoomIn());
+        mMap.moveCamera(CameraUpdateFactory.zoomIn());
+        Polyline line= mMap.addPolyline(new PolylineOptions().add(client.polyRoute).width(10).color(Color.GREEN));
+        //Polyline line2= mMap.addPolyline(new PolylineOptions().add(client.theirPolyRoute).width(5).color(Color.RED));
+        //Polyline line3= mMap.addPolyline(new PolylineOptions().add(client.poly2).width(5).color(Color.BLUE));
+        //Polyline line4= mMap.addPolyline(new PolylineOptions().add(client.poly3).width(5).color(Color.BLACK));
+        mMap.addMarker(new MarkerOptions().position(client.poolLeader.origin).title(client.poolLeader.name));
+        mMap.addMarker(new MarkerOptions().position(client.poolLeader.destination).title("Destination"));
+        Log.i(computeTag, "Number of Members:" + Integer.toString(client.poolMembers.length));
+        for (int increment=0;increment<client.poolMembers.length;increment++){
+        float hue= increment*35;
+
+        while(hue>360){
+        hue=hue-360;
+        }
+        int hueInt=increment*20;
+        mMap.addPolyline(new PolylineOptions().add(client.poolMembers[increment].polyRoute).width(5).color(Color.MAGENTA));
+        mMap.addMarker(new MarkerOptions().position(client.poolMembers[increment].origin)
+        .title(client.poolMembers[increment].name)
+        .alpha(0.7f)
+        .icon(BitmapDescriptorFactory.defaultMarker(hue)));
+
+        mMap.addMarker(new MarkerOptions().position(client.poolMembers[increment].meetPoint.location)
+        .title(client.poolMembers[increment].meetPoint.name)
+        .alpha(0.9f)
+        .icon(BitmapDescriptorFactory.defaultMarker(hue)));
+        //final float hue = random.nextFloat();
+        /// Saturation between 0.1 and 0.3
+        //final float saturation = (random.nextInt(2000) + 1000) / 10000f;
+        //final float luminance = 0.9f;
+        //final Color linecolor = Color.getHSBColor(hue, saturation, luminance);
+        //mMap.addPolyline(new PolylineOptions().add(client.poolMembers[increment].polyRoute).width(5).color(linecolor.));
+        }
+
+
+        Log.i(computeTag, "Meetpoint computed");
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
