@@ -33,4 +33,5 @@
     <string name="title_activity_contacts">ContactsActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_menu">menuActivity</string>
+    <string name="title_activity_add_member">SplitDist</string>
 </resources>

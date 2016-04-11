@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryOrange">#F3EC9C</color>
-    <color name="colorPrimaryDarkOrange">#FFA52B</color>
-    <color name="colorAccentOrange">#F5CB5B</color>
-    <color name="colourFreeBlue">#E9F5DD</color>
+    <color name="colorPrimaryOrange">#40a6bd</color>
+    <color name="colorPrimaryDarkOrange">#3a707f</color>
+    <color name="colorAccentOrange">#277f7b</color>
+    <color name="colourFreeBlue">#f9f9d9</color>
     <color name="colourGoogleBlue">#54D8CC</color>
 </resources>

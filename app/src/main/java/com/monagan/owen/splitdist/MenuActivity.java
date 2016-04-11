@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -82,11 +83,13 @@ public class MenuActivity extends AppCompatActivity {
     private void createAddMemberMenu() {
 
         AddMemberHeader = (TextView) findViewById(R.id.addMemberHeader);
+        Typeface spartan=Typeface.createFromAsset(getAssets(), "fonts/LeagueSpartan-Bold.otf");
+        AddMemberHeader.setTypeface(spartan);
         location = (EditText) findViewById(R.id.location);
         location.setOnFocusChangeListener(locationChange);
 
         name = (AutoCompleteTextView) findViewById(R.id.poolMemberName);
-        facebookFriend = (RadioButton) findViewById(R.id.facebookButton);
+        //facebookFriend = (RadioButton) findViewById(R.id.facebookButton);
         cancelMember = (Button) findViewById(R.id.cancelButton);
         confirmMember = (Button) findViewById(R.id.confirmButton);
         destination=(EditText) findViewById(R.id.destination);
