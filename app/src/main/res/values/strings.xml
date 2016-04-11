@@ -34,4 +34,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_menu">menuActivity</string>
     <string name="title_activity_add_member">SplitDist</string>
+    <string name="title_activity_main_menu">mainMenu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
